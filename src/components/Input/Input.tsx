@@ -1,15 +1,11 @@
-import { INPUT_TYPES, INPUT_PLACEHOLDER } from "./constants";
+import { ChangeEvent } from "react";
 
 interface IInput {
-  setQuery: (value: string) => void;
+  handleInput: (event: ChangeEvent<HTMLInputElement>) => void;
+  type: string;
+  placeholder: string;
 }
 
-export function Input({ setQuery }: IInput) {
-  return (
-    <input
-      type={INPUT_TYPES.TEXT}
-      placeholder={INPUT_PLACEHOLDER}
-      onChange={(e) => setQuery(e.target.value)}
-    />
-  );
+export function Input({ handleInput, type, placeholder }: IInput) {
+  return <input type={type} placeholder={placeholder} onChange={handleInput} />;
 }

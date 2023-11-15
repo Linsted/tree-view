@@ -12,6 +12,8 @@ function App() {
   const [filteredData, setFilteredData] = useState<FolderNode[]>([]);
   const [query, setQuery] = useState("");
 
+  console.log(query);
+
   return (
     <>
       {/* <div>Hello world! I am using React</div> */}

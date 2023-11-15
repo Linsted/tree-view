@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, ChangeEvent } from "react";
 
 import { FolderNode, ISearch } from "@/types";
 
@@ -7,7 +7,7 @@ interface IfindUserQuery {
   query: string;
 }
 
-export function useSearch({ data, setFilteredData, query }: ISearch) {
+export function useSearch({ data, setFilteredData, query, setQuery }: ISearch) {
   function findUserQuery({ data, query }: IfindUserQuery) {
     const filteredNodes: FolderNode[] = [];
 
@@ -28,9 +28,15 @@ export function useSearch({ data, setFilteredData, query }: ISearch) {
     return filteredNodes;
   }
 
+  function handleInput(event: ChangeEvent<HTMLInputElement>) {
+    setQuery(event.target.value);
+  }
+
   useEffect(() => {
     const filteredData = findUserQuery({ data: data.children, query });
 
     setFilteredData(filteredData);
   }, [data, query, setFilteredData]);
+
+  return { handleInput };
 }

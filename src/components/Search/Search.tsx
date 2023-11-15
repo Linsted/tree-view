@@ -1,14 +1,20 @@
 import { ISearch } from "@/types";
 
 import { useSearch } from "./useSearch";
+import { INPUT_TYPES, INPUT_PLACEHOLDER } from "./constants";
+
 import { Input } from "../Input/Input";
 
 export function Search({ data, setFilteredData, query, setQuery }: ISearch) {
-  useSearch({ data, setFilteredData, query, setQuery });
+  const { handleInput } = useSearch({ data, setFilteredData, query, setQuery });
 
   return (
     <>
-      <Input setQuery={setQuery} />
+      <Input
+        handleInput={handleInput}
+        type={INPUT_TYPES.TEXT}
+        placeholder={INPUT_PLACEHOLDER}
+      />
     </>
   );
 }
