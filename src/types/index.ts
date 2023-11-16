@@ -1,6 +1,7 @@
 type Permission = "read" | "write";
 
 export interface FolderNode {
+  id: string;
   name: string;
   type: "folder" | "file";
   permissions: Permission[];
@@ -8,6 +9,7 @@ export interface FolderNode {
 }
 
 export interface RootNode {
+  id: string;
   name: string;
   type: "folder";
   permissions: Permission[];
