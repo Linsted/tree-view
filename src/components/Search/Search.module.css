@@ -1,0 +1,13 @@
+/* Ваш стилізований інпут */
+.input {
+  padding: 10px;
+  font-size: 14px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  min-width: 300px;
+}
+
+.input:focus {
+  outline: none;
+  border-color: #007bff;
+}

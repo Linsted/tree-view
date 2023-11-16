@@ -5,26 +5,29 @@ import { FolderNode } from "@/types";
 import { Search } from "./components/Search/Search";
 import { data } from "./data/response";
 
-// import "./App.css";
-Search;
+// import styles from "./App.module.css";
+import { Tree } from "./components/Tree/Tree";
 
-function App() {
+export function App() {
   const [filteredData, setFilteredData] = useState<FolderNode[]>([]);
-  const [query, setQuery] = useState("");
-
-  console.log(query);
+  const [query, setQuery] = useState<string>("");
+  const [activeId, setActiveId] = useState<string | null>(null);
 
   return (
-    <>
-      {/* <div>Hello world! I am using React</div> */}
+    <section>
       <Search
         data={data}
         setFilteredData={setFilteredData}
         setQuery={setQuery}
         query={query}
       />
-    </>
+      {data.children.length > 0 && (
+        <Tree
+          data={filteredData}
+          activeId={activeId}
+          setActiveId={setActiveId}
+        />
+      )}
+    </section>
   );
 }
-
-export default App;
