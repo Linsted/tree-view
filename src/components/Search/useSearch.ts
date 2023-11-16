@@ -9,21 +9,38 @@ interface IfindUserQuery {
 
 export function useSearch({ data, setFilteredData, query, setQuery }: ISearch) {
   function findUserQuery({ data, query }: IfindUserQuery) {
-    const filteredNodes: FolderNode[] = [];
+    const filterNodesRecursively = (node: FolderNode): FolderNode | null => {
+      const lowercaseQuery = query.toLowerCase();
+      const lowercaseName = node.name.toLowerCase();
 
-    function searchChildren(children: FolderNode[]) {
-      for (const item of children) {
-        if (item.name.toLowerCase().includes(query.toLowerCase())) {
-          filteredNodes.push(item);
+      if (lowercaseName.includes(lowercaseQuery)) {
+        const filteredNode: FolderNode = { ...node, children: [] };
+
+        if (node.children && node.children.length > 0) {
+          filteredNode.children = node.children
+            .map(filterNodesRecursively)
+            .filter((filteredChild) => filteredChild !== null) as FolderNode[];
         }
 
-        if (item.children && item.children.length > 0) {
-          searchChildren(item.children);
+        return filteredNode;
+      }
+
+      if (node.children && node.children.length > 0) {
+        const filteredChildren = node.children
+          .map(filterNodesRecursively)
+          .filter((filteredChild) => filteredChild !== null) as FolderNode[];
+
+        if (filteredChildren.length > 0) {
+          return { ...node, children: filteredChildren };
         }
       }
-    }
 
-    query.length > 0 && searchChildren(data);
+      return null;
+    };
+
+    const filteredNodes: FolderNode[] = data
+      .map(filterNodesRecursively)
+      .filter((node) => node !== null) as FolderNode[];
 
     return filteredNodes;
   }
