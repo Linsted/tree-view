@@ -3,7 +3,7 @@ export type Permission = "read" | "write";
 export interface FolderNode {
   id: string;
   name: string;
-  type: "folder" | "file";
+  type?: "folder" | "file";
   permissions: Permission[];
   children?: FolderNode[];
 }
@@ -11,7 +11,7 @@ export interface FolderNode {
 export interface RootNode {
   id: string;
   name: string;
-  type: "folder";
+  type?: "folder";
   permissions: Permission[];
   children: FolderNode[];
 }

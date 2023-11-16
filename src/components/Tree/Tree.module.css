@@ -1,6 +1,6 @@
 .list {
   list-style: none;
-  border: 1px solid #ccc;
+  border: 1px solid var(--secondaryColor);
   border-radius: 5px;
   min-height: 500px;
   padding: 20px;

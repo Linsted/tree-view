@@ -1,14 +1,9 @@
-import { MdDelete } from "react-icons/md";
-
 import { FolderNode } from "@/types";
-import { checkPermissions } from "@/helpers/functions";
 
 import { useTreeItem } from "./useTreeItem";
 import styles from "./TreeItem.module.css";
 
-import { Arrows } from "../Arrows/Arrows";
-import { Button } from "../Button/Button";
-import { BUTTON_TYPES } from "../Button/constants";
+import { TreeItemContent } from "../TreeItemContent/TreeItemContent";
 
 interface ITreeItem extends FolderNode {
   activeId: string | null;
@@ -20,7 +15,7 @@ interface ITreeItem extends FolderNode {
 export function TreeItem({
   id,
   name,
-  children,
+  children = [],
   permissions,
   setActiveId,
   activeId,
@@ -37,33 +32,23 @@ export function TreeItem({
 
   return (
     <li className={styles.listItem} onClick={(event) => handleOpenClick(event)}>
-      <div className={styles.itemNameAndButtonContainer}>
-        <div className={styles.itemNameContainer}>
-          {children && children.length > 0 && <Arrows isOpen={isOpen} />}
-          <div className={itemStyles} onClick={() => handleActiveClick(id)}>
-            {name}
-          </div>
-        </div>
-        <div>
-          {checkPermissions(permissions) && (
-            <div>
-              <Button
-                onClick={handleDeleteClick}
-                icon={<MdDelete />}
-                type={BUTTON_TYPES.BUTTON}
-              />
-            </div>
-          )}
-        </div>
-      </div>
-      {children && isOpen && (
+      <TreeItemContent
+        isOpen={isOpen}
+        itemStyles={itemStyles}
+        handleActiveClick={handleActiveClick}
+        handleDeleteClick={handleDeleteClick}
+        name={name}
+        children={children}
+        permissions={permissions}
+        id={id}
+      />
+      {children.length > 0 && isOpen && (
         <ul className={styles.list}>
           {children.map((child) => (
             <TreeItem
               key={child.id}
               id={child.id}
               name={child.name}
-              type={child.type}
               children={child.children}
               permissions={child.permissions}
               setActiveId={setActiveId}

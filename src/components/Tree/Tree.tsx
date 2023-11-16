@@ -1,6 +1,7 @@
 import { FolderNode } from "@/types";
 
 import styles from "./Tree.module.css";
+
 import { TreeItem } from "../TreeItem/TreeItem";
 
 interface ITree {
