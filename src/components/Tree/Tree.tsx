@@ -7,9 +7,10 @@ interface ITree {
   data: FolderNode[];
   activeId: string | null;
   setActiveId: (id: string) => void;
+  setFilteredData: (data: FolderNode[]) => void;
 }
 
-export function Tree({ data, activeId, setActiveId }: ITree) {
+export function Tree({ data, activeId, setActiveId, setFilteredData }: ITree) {
   return (
     <ul className={styles.list}>
       {data.map((item) => (
@@ -22,6 +23,8 @@ export function Tree({ data, activeId, setActiveId }: ITree) {
           permissions={item.permissions}
           activeId={activeId}
           setActiveId={setActiveId}
+          data={data}
+          setFilteredData={setFilteredData}
         />
       ))}
     </ul>

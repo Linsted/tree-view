@@ -38,7 +38,7 @@ export const data: RootNode = {
             },
             {
               id: "11",
-              name: "File 2",
+              name: "File 2 test",
               type: "file",
               permissions: ["read", "write"],
             },
@@ -56,7 +56,7 @@ export const data: RootNode = {
           id: "6",
           name: "File 3",
           type: "file",
-          permissions: ["read"],
+          permissions: ["read", "write"],
         },
       ],
     },

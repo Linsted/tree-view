@@ -1,4 +1,4 @@
-type Permission = "read" | "write";
+export type Permission = "read" | "write";
 
 export interface FolderNode {
   id: string;
@@ -17,7 +17,7 @@ export interface RootNode {
 }
 
 export interface ISearch {
-  data: RootNode;
+  data: FolderNode[];
   setFilteredData: (data: FolderNode[]) => void;
   setQuery: (query: string) => void;
   query: string;

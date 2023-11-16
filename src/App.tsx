@@ -16,7 +16,7 @@ export function App() {
   return (
     <section>
       <Search
-        data={data}
+        data={data.children}
         setFilteredData={setFilteredData}
         setQuery={setQuery}
         query={query}
@@ -26,6 +26,7 @@ export function App() {
           data={filteredData}
           activeId={activeId}
           setActiveId={setActiveId}
+          setFilteredData={setFilteredData}
         />
       )}
     </section>
