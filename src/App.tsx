@@ -5,7 +5,6 @@ import { FolderNode } from "@/types";
 import { Search } from "./components/Search/Search";
 import { data } from "./data/response";
 
-// import styles from "./App.module.css";
 import { Tree } from "./components/Tree/Tree";
 
 export function App() {
