@@ -21,6 +21,7 @@ export function TreeItem({
   activeId,
   data,
   setFilteredData,
+  type,
 }: ITreeItem) {
   const {
     isOpen,
@@ -41,6 +42,7 @@ export function TreeItem({
         children={children}
         permissions={permissions}
         id={id}
+        type={type}
       />
       {children.length > 0 && isOpen && (
         <ul className={styles.list}>
@@ -55,6 +57,7 @@ export function TreeItem({
               activeId={activeId}
               data={data}
               setFilteredData={setFilteredData}
+              type={child.type}
             />
           ))}
         </ul>

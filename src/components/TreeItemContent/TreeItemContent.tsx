@@ -1,13 +1,14 @@
 import { MdDelete } from "react-icons/md";
 
 import { checkPermissions } from "@/helpers/functions";
-import { FolderNode, Permission } from "@/types";
+import { FolderNode, Permission, FileType } from "@/types";
 
 import styles from "./TreeItemContent.module.css";
 
 import { Arrows } from "../Arrows/Arrows";
 import { Button } from "../Button/Button";
 import { BUTTON_TYPES } from "../Button/constants";
+import { Icons } from "../Icons/Icons";
 
 interface TreeItemContentProps {
   isOpen: boolean;
@@ -20,6 +21,7 @@ interface TreeItemContentProps {
   children: FolderNode[] | undefined;
   permissions: Permission[];
   id: string;
+  type: FileType;
 }
 
 export function TreeItemContent({
@@ -31,11 +33,13 @@ export function TreeItemContent({
   children,
   permissions,
   id,
+  type,
 }: TreeItemContentProps) {
   return (
     <div className={styles.itemNameAndButtonContainer}>
       <div className={styles.itemNameContainer}>
         {children && children.length > 0 && <Arrows isOpen={isOpen} />}
+        <Icons type={type} />
         <div className={itemStyles} onClick={() => handleActiveClick(id)}>
           {name}
         </div>

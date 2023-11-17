@@ -9,3 +9,7 @@
 .active {
   color: var(--mainColor);
 }
+
+.listItem {
+  cursor: pointer;
+}
