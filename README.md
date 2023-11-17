@@ -7,3 +7,8 @@ Link to the deployed version - https://tree-view-eta.vercel.app/
 - React
 - TypeScript
 - RTL/Jest
+
+## Usage:
+- Clone the repository
+- Install dependencies: npm install
+- Run the application: npm run dev
