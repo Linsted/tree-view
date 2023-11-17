@@ -6,6 +6,7 @@ import { Search } from "./components/Search/Search";
 import { data } from "./data/response";
 
 import { Tree } from "./components/Tree/Tree";
+import { NotFound } from "./components/NotFound/NotFound";
 
 export function App() {
   const [filteredData, setFilteredData] = useState<FolderNode[]>([]);
@@ -20,13 +21,15 @@ export function App() {
         setQuery={setQuery}
         query={query}
       />
-      {data.children.length > 0 && (
+      {filteredData.length > 0 ? (
         <Tree
           data={filteredData}
           activeId={activeId}
           setActiveId={setActiveId}
           setFilteredData={setFilteredData}
         />
+      ) : (
+        <NotFound />
       )}
     </section>
   );
